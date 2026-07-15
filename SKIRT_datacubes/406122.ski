@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<skirt-simulation-hierarchy type="MonteCarloSimulation" format="9" producer="TNG_SKIRT_doc" time="2024-01-12 21:22:02.351330">
+  <MonteCarloSimulation userLevel="Expert" simulationMode="DustEmission" numPackets="1000000000.0">
+    <random type="Random">
+      <Random seed="0" />
+    </random>
+    <units type="Units">
+      <ExtragalacticUnits fluxOutputStyle="Frequency" />
+    </units>
+    <cosmology type="Cosmology">
+      <FlatUniverseCosmology redshift="0.0113" reducedHubbleConstant="0.6774" matterDensityFraction="0.3089" />
+    </cosmology>
+    <sourceSystem type="SourceSystem">
+      <SourceSystem minWavelength="0.0091 micron" maxWavelength="2000 micron" wavelengths="0.55 micron" sourceBias="0.5">
+        <sources type="Source">
+          <ParticleSource filename="406122_stars.txt" importVelocity="false" importVelocityDispersion="false" importCurrentMass="false" useColumns="" sourceWeight="1" wavelengthBias="0.5">
+            <smoothingKernel type="SmoothingKernel">
+              <CubicSplineSmoothingKernel />
+            </smoothingKernel>
+            <sedFamily type="SEDFamily">
+              <BruzualCharlotSEDFamily imf="Chabrier" resolution="High" />
+            </sedFamily>
+            <wavelengthBiasDistribution type="WavelengthDistribution">
+              <LogWavelengthDistribution minWavelength="0.0001 micron" maxWavelength="1e6 micron" />
+            </wavelengthBiasDistribution>
+          </ParticleSource>
+          <ParticleSource filename="406122_sfr.txt" importVelocity="false" importVelocityDispersion="false" importCurrentMass="false" useColumns="" sourceWeight="1" wavelengthBias="0.5">
+            <smoothingKernel type="SmoothingKernel">
+              <CubicSplineSmoothingKernel/>
+            </smoothingKernel>
+            <sedFamily type="SEDFamily">
+              <MappingsSEDFamily/>
+            </sedFamily>
+            <wavelengthBiasDistribution type="WavelengthDistribution">
+              <LogWavelengthDistribution minWavelength="0.0001 micron" maxWavelength="1e6 micron"/>
+            </wavelengthBiasDistribution>
+          </ParticleSource>
+          </sources>
+      </SourceSystem>
+    </sourceSystem>
+    <mediumSystem type="MediumSystem">
+      <MediumSystem>
+        <secondaryEmissionOptions type="SecondaryEmissionOptions">
+          <SecondaryEmissionOptions storeEmissionRadiationField="true" secondaryPacketsMultiplier="1" spatialBias="0.5" />
+        </secondaryEmissionOptions>
+        <samplingOptions type="SamplingOptions">
+          <SamplingOptions numDensitySamples="500" />
+        </samplingOptions>
+        <radiationFieldOptions type="RadiationFieldOptions">
+          <RadiationFieldOptions>
+            <radiationFieldWLG type="DisjointWavelengthGrid">
+              <LogWavelengthGrid minWavelength="0.02 micron" maxWavelength="10 micron" numWavelengths="25" />
+            </radiationFieldWLG>
+          </RadiationFieldOptions>
+        </radiationFieldOptions>
+        <photonPacketOptions type="PhotonPacketOptions">
+          <PhotonPacketOptions minWeightReduction="1e4" minScattEvents="0" pathLengthBias="0.5" />
+        </photonPacketOptions>
+        <dustEmissionOptions type="DustEmissionOptions">
+          <DustEmissionOptions dustEmissionType="Stochastic" includeHeatingByCMB="false" wavelengthBias="0.5">
+            <cellLibrary type="SpatialCellLibrary">
+              <AllCellsLibrary />
+            </cellLibrary>
+            <dustEmissionWLG type="DisjointWavelengthGrid">
+              <NestedLogWavelengthGrid minWavelengthBaseGrid="0.2 micron" maxWavelengthBaseGrid="2000 micron" numWavelengthsBaseGrid="100" minWavelengthSubGrid="3 micron" maxWavelengthSubGrid="25 micron" numWavelengthsSubGrid="200" />
+            </dustEmissionWLG>
+            <wavelengthBiasDistribution type="WavelengthDistribution">
+              <LogWavelengthDistribution minWavelength="0.04 micron" maxWavelength="1e6 micron" />
+            </wavelengthBiasDistribution>
+          </DustEmissionOptions>
+        </dustEmissionOptions>
+        <media type="Medium">
+          <VoronoiMeshMedium filename="406122_gas.txt" minX="-30000.0 pc" maxX="30000.0 pc" minY="-30000.0 pc" maxY="30000.0 pc" minZ="-30000.0 pc" maxZ="30000.0 pc" massType="MassDensity" massFraction="0.2" importMetallicity="true" importTemperature="false" maxTemperature="0 K" importVelocity="false" importMagneticField="false" importVariableMixParams="false" useColumns="">
+            <materialMix type="MaterialMix">
+              <ThemisDustMix numSilicateSizes="15" numHydrocarbonSizes="15" />
+            </materialMix>
+          </VoronoiMeshMedium>
+        </media>
+        <grid type="SpatialGrid">
+          <PolicyTreeSpatialGrid minX="-30000.0 pc" maxX="30000.0 pc" minY="-30000.0 pc" maxY="30000.0 pc" minZ="-30000.0 pc" maxZ="30000.0 pc" treeType="OctTree">
+            <policy type="TreePolicy">
+              <DensityTreePolicy minLevel="6" maxLevel="12" maxDustFraction="2e-6" maxDustOpticalDepth="0" wavelength="0.55 micron" maxDustDensityDispersion="0" maxElectronFraction="1e-6" maxGasFraction="1e-6" />
+            </policy>
+          </PolicyTreeSpatialGrid>
+        </grid>
+      </MediumSystem>
+    </mediumSystem>
+    <instrumentSystem type="InstrumentSystem">
+      <InstrumentSystem>
+        <defaultWavelengthGrid type="WavelengthGrid">
+          <LinWavelengthGrid minWavelength="0.30 micron" maxWavelength="1.05 micron" numWavelengths="1500" />
+        </defaultWavelengthGrid>
+        <instruments type="Instrument">      
+                      <FullInstrument instrumentName="splus_cube" distance="0 Mpc" inclination="0 deg" azimuth="0 deg" roll="0 deg" fieldOfViewX="60 kpc" numPixelsX="600" centerX="0 pc" fieldOfViewY="60 kpc" numPixelsY="600" centerY="0 pc" recordComponents="false" numScatteringLevels="0" recordPolarization="false" recordStatistics="false">
+              <wavelengthGrid type="WavelengthGrid">
+                <LinWavelengthGrid minWavelength="0.30 micron" maxWavelength="1.05 micron" numWavelengths="1500" />
+              </wavelengthGrid>
+            </FullInstrument>
+          </instruments>
+      </InstrumentSystem>
+    </instrumentSystem>
+    <probeSystem type="ProbeSystem">
+      <ProbeSystem/>
+    </probeSystem>
+  </MonteCarloSimulation>
+</skirt-simulation-hierarchy>
