@@ -40,8 +40,8 @@ SKIRT_FILES=(
 
 TNG_FILES=(
     "cutout_TNG50-1_snap97_subhalo10.hdf5"
-    "cutout_TNG50-1_snap97_subhalo10_firefly_positions.hdf5"
     "subhalo10_firefly_positions.hdf5"
+    "cutout_TNG50-1_snap98_subhalo406122.hdf5"
     "subhalo406122_firefly_positions.hdf5"
 )
 
