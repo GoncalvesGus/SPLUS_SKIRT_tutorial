@@ -8,9 +8,10 @@ instrumental noise and PSF.
 ORCID: [0009-0006-5887-6621](https://orcid.org/0009-0006-5887-6621)
 Lattes: http://lattes.cnpq.br/7416443230735445
 
-<img width="500" height="259" alt="output" src="https://github.com/user-attachments/assets/a9bd17f2-8345-4f02-b195-74ab7030c1a1" />
-<img width="1433" height="863" alt="Data_analysis" src="https://github.com/user-attachments/assets/470efecf-e6c8-40f3-80f1-6a929a1ee96a" />
-
+<div align="center">
+  <img width="500" height="259" alt="output" src="https://github.com/user-attachments/assets/a9bd17f2-8345-4f02-b195-74ab7030c1a1" />
+  <img width="500" height="259" alt="Data_analysis" src="https://github.com/user-attachments/assets/6c58e115-e66b-4667-961e-4f22db01e5b5" />
+</div>
 
 
 ## Prerequisites
