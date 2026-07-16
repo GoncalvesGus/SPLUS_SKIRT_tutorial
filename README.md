@@ -5,6 +5,7 @@ data through SKIRT radiative transfer to synthetic S-PLUS mock images with reali
 instrumental noise and PSF.
 
 **Author:** Gustavo Fernandes Gonçalves
+
 ORCID: [0009-0006-5887-6621](https://orcid.org/0009-0006-5887-6621)
 
 Lattes: http://lattes.cnpq.br/7416443230735445
