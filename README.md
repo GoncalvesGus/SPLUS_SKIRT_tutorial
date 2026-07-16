@@ -32,10 +32,10 @@ new terminal to work on this tutorial.
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/SPLUS_SKIRT_tutorial.git
+   git clone https://github.com/GoncalvesGus/SPLUS_SKIRT_tutorial.git
    cd SPLUS_SKIRT_tutorial
    ```
-2. Download the large data files (SKIRT datacubes and TNG50 cutouts) from the
+2. Download the large data files (SKIRT datacubes and TNG50 hdf5 cutouts) from the
    GitHub Release:
    ```bash
    bash download_data.sh
