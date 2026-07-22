@@ -12,7 +12,7 @@ Lattes: http://lattes.cnpq.br/7416443230735445
 
 <div align="center">
   <img width="500" height="259" alt="output" src="https://github.com/user-attachments/assets/a9bd17f2-8345-4f02-b195-74ab7030c1a1" />
-  <img width="500" height="259" alt="Data_analysis" src="https://github.com/user-attachments/assets/6c58e115-e66b-4667-961e-4f22db01e5b5" />
+  <img width="500" height="259" alt="SPUS_skirt" src="https://github.com/user-attachments/assets/01b2f3fa-70ae-46bc-b031-4deca5950bce" />
 </div>
 
 
