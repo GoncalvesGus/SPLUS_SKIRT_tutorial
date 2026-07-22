@@ -116,35 +116,12 @@ def connect_ds9():
     return pyds9.DS9()
 
 
-def interactive_slit(img):
-    """Sliders (width, length, xc, yc) with a preview of the split on `img`. Returns a dict with the values."""
-    from ipywidgets import interact, IntSlider
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import Rectangle
-    from astropy.visualization import PercentileInterval, ImageNormalize
-
-    params = {'width': 20, 'length': 300, 'xc': img.shape[1] // 2, 'yc': img.shape[0] // 2}
-
-    def _preview(width, length, xc, yc):
-        params.update(width=width, length=length, xc=xc, yc=yc)
-        x0, x1 = xc - width // 2, xc + width // 2
-        y0, y1 = yc - length // 2, yc + length // 2
-
-        plt.figure(figsize=(5, 5))
-        plt.imshow(img, origin='lower', cmap='gray', norm=ImageNormalize(img, interval=PercentileInterval(99.5), stretch=AsinhStretch(0.03)))
-        plt.gca().add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, edgecolor='red', facecolor='none'))
-        plt.title('Region preview')
-        plt.show()
-
-    interact(
-        _preview,
-        width=IntSlider(min=1, max=img.shape[1], step=1, value=params['width']),
-        length=IntSlider(min=1, max=img.shape[0], step=1, value=params['length']),
-        xc=IntSlider(min=0, max=img.shape[1] - 1, step=1, value=params['xc']),
-        yc=IntSlider(min=0, max=img.shape[0] - 1, step=1, value=params['yc']),
-    )
-
-    return params
+def convert_to_jansky(data, header):
+    """Convert SKIRT output (MJy/sr) to Jy/pixel using CDELT1 from header."""
+    pixel_scale_arcsec = header['CDELT1']  # arcsec/pixel
+    pixel_scale_rad = pixel_scale_arcsec * (np.pi / 180 / 3600)  # arcsec -> rad
+    omega_pixel_sr = pixel_scale_rad**2  # sr per pixel
+    return data * omega_pixel_sr * 1e6  # MJy/sr -> Jy/pixel
 
 
 def convolve_filter(wave, cube, filt_path):
