@@ -125,15 +125,17 @@ def convert_to_jansky(data, header):
 
 
 def convolve_filter(wave, cube, filt_path):
-    """
-    f_band = integral(f_lambda * T dlambda) / integral(T dlambda)
-    T = lambda * R (R = response do CCD; see SKIRT/PTS BroadBand).
-    """
     filt_wave, filt_resp = load_transmission(filt_path)
     resp = np.interp(wave, filt_wave, filt_resp, left=0, right=0)
-    trans = wave * resp
-    num = trapz(cube * trans[:, None, None], wave, axis=0)
-    den = trapz(trans, wave)
+    trans = (wave * resp).astype(cube.dtype)
+
+    mask = trans > 0
+    wave_m = wave[mask]
+    trans_m = trans[mask]
+    cube_m = cube[mask]
+
+    num = trapz(cube_m * trans_m[:, None, None], wave_m, axis=0)
+    den = trapz(trans_m, wave_m)
     return num / den
 
 
